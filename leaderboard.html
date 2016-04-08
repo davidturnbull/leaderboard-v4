@@ -3,12 +3,14 @@
 </head>
 <body>
     <h1>Leaderboard</h1>
+    <p>{{> loginButtons}}</p>
     {{> leaderboard}}
 </body>
 
 <template name="leaderboard">
-{{> addPlayerForm}}
-<ul>
+{{#if currentUser}}
+    {{> addPlayerForm}}
+    <ul>
     {{#each player}}
         <li class="player {{selectedClass}}">{{name}}: {{score}}</li>
     {{/each}}
@@ -20,7 +22,10 @@
             <button class="remove">Remove Player</button>
         </li>
     {{/if}}
-</ul>
+    </ul>
+{{else}}
+    <p>You must be logged-in to see this content.</p>
+{{/if}}
 </template>
 
 <template name="addPlayerForm">
